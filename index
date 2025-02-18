@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aom and her beloved Sai Pan</title>
+  <link rel="icon" type="image/png" href="Mp.png">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      overflow: hidden;
+      background: #ff9fbd;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
+    }
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      max-width: 1100px;
+      padding: 30px;
+      border-radius: 15px;
+      background-color: white;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      flex-wrap: wrap;
+    }
+    .image-container {
+      flex: 1;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+    /* Video styling */
+    .image-container video {
+      width: 100%;
+      max-height: 350px;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      object-fit: cover;
+    }
+    .content-container {
+      flex: 1;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    .password-label {
+      font-size: 24px;
+      color: #f06292;
+      margin-bottom: 15px;
+      font-weight: 500;
+      padding: 10px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      background: #ffe0f0;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+    .password-label img {
+      width: 30px;
+      height: 30px;
+      margin-right: 10px;
+    }
+    .password-description {
+      font-size: 18px;
+      color: #ff80ab;
+      margin-bottom: 30px;
+      font-weight: 400;
+    }
+    .input-container {
+      margin-bottom: 20px;
+    }
+    .input-container input {
+      width: 100%;
+      padding: 15px;
+      font-size: 22px;
+      border: none;
+      border-radius: 10px;
+      background: #ffe0f0;
+      text-align: center;
+      color: #f06292;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      transition: background 0.3s;
+    }
+    .input-container input:focus {
+      background: #ffb6c1;
+      outline: none;
+    }
+    .button-container {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 15px;
+      width: 100%;
+    }
+    .button-container button {
+      padding: 18px;
+      font-size: 20px;
+      background-color: #ff80ab;
+      border: none;
+      border-radius: 10px;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s ease-in-out;
+    }
+    .button-container button:hover {
+      background-color: #f06292;
+    }
+    .button-container button:active {
+      transform: scale(0.98);
+    }
+    /* Custom alert box */
+    .alert {
+      display: none;
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #f06292;
+      color: white;
+      padding: 15px;
+      border-radius: 8px;
+      font-size: 18px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      z-index: 999;
+    }
+    /* Heart falling animation */
+    .heart {
+      position: absolute;
+      font-size: 2rem;
+      color: pink;
+      animation: fall 2s infinite;
+    }
+
+    @keyframes fall {
+      0% {
+        top: -50px;
+        opacity: 1;
+      }
+      100% {
+        top: 100%;
+        opacity: 0;
+      }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+        text-align: center;
+        padding: 15px;
+      }
+      .image-container {
+        padding: 0;
+      }
+      .password-label {
+        font-size: 20px;
+      }
+      .input-container input {
+        font-size: 18px;
+      }
+      .button-container button {
+        font-size: 16px;
+        padding: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="content-container">
+      <div class="password-label">
+        <img src="https://cdn.discordapp.com/attachments/1305327663422111879/1339947628808376362/61457.png?ex=67b092f9&is=67af4179&hm=0840ddc3f2fda9f29d65246533be535a55f00fc08fb918fb0e026a769ce1e447&" alt="Lock Icon">
+        ENTER OUR PASSWORD
+      </div>
+      <div class="password-description">รหัสคือวันครบรอบ</div>
+      <div class="input-container">
+        <input type="password" id="passwordInput" maxlength="6" placeholder="••••••" />
+      </div>
+      <div class="button-container">
+        <button onclick="appendDigit(1)">1</button>
+        <button onclick="appendDigit(2)">2</button>
+        <button onclick="appendDigit(3)">3</button>
+        <button onclick="appendDigit(4)">4</button>
+        <button onclick="appendDigit(5)">5</button>
+        <button onclick="appendDigit(6)">6</button>
+        <button onclick="appendDigit(7)">7</button>
+        <button onclick="appendDigit(8)">8</button>
+        <button onclick="appendDigit(9)">9</button>
+        <button onclick="appendDigit(0)">0</button>
+        <button onclick="clearInput()">Clear</button>
+      </div>
+    </div>
+
+    <!-- Video -->
+    <div class="image-container">
+      <video autoplay loop muted>
+        <source src="Day.mp4" type="video/mp4"> <!-- Replace with your video -->
+        Your browser does not support the video tag.
+      </video>
+    </div>
+  </div>
+
+  <!-- Alert box -->
+  <div id="alert" class="alert">Password Correct!</div>
+
+  <!-- Heart images -->
+  <div id="hearts"></div>
+
+  <script>
+    const correctPassword = "060657"; // Change this to the password you want
+    let password = "";
+
+    // Add heart animation
+    setInterval(() => {
+      const heart = document.createElement("span");
+      heart.classList.add("heart");
+      heart.textContent = "❤️";
+      heart.style.left = `${Math.random() * 100}%`;
+      document.getElementById("hearts").appendChild(heart);
+      setTimeout(() => heart.remove(), 2000); // Remove heart after it falls
+    }, 1000);
+
+    function appendDigit(digit) {
+      if (password.length < 6) {
+        password += digit;
+        document.getElementById("passwordInput").value = password;
+      }
+      if (password.length === 6) {
+        checkPassword();
+      }
+    }
+
+    function clearInput() {
+      password = "";
+      document.getElementById("passwordInput").value = "";
+    }
+    function checkPassword() {
+  if (password === correctPassword) {
+    showAlert("ยินดีด้วยคุณรอดตาย!");
+    // รอ 1.5 วินาที แล้วเปลี่ยนหน้าไป readme.html
+    setTimeout(() => {
+      window.location.href = "index1.html"; // เปลี่ยนเป็น URL ที่คุณต้องการ
+    }, 1500);
+  } else {
+    showAlert("เสียใจด้วยนะ!");
+    clearInput();
+  }
+}
+
+    function showAlert(message) {
+      const alertBox = document.getElementById("alert");
+      alertBox.textContent = message;
+      alertBox.style.display = "block";
+      setTimeout(() => {
+        alertBox.style.display = "none";
+      }, 2500); // Hide alert after 3 seconds
+    }
+  </script>
+
+</body>
+</html>
